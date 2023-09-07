@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-h4=1p0ac7!h^$)vk&kb$j1aw#%woigwv_a0@!91$xol$6obtf8'
@@ -92,14 +92,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = "media_root"
-STATIC_ROOT = "static_root"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'leads.User'
